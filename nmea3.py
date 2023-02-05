@@ -1,9 +1,8 @@
 import can
 
-# Set up the CAN bus interface
-bus = can.interface.Bus(channel='vcan0', bustype='socketcan_native')
+# initialize the CAN bus
+bus = can.interface.Bus(channel='can0', bustype='socketcan')
 
-# Continuously read data from the NMEA 2000 network
-while True:
-    message = bus.recv()
-    print(message)
+# listen to the incoming CAN messages
+for msg in bus:
+    print(msg)

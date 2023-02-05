@@ -1,16 +1,13 @@
 #!/bin/bash
 
-# Install python3 and pip
+# update the package list
 sudo apt-get update
-sudo apt-get install -y python3 python3-pip
 
-# Install the python-can library
-sudo pip3 install python-can
+# install the python3 pip package manager
+sudo apt-get install -y python3-pip
 
-# Create a virtual CAN interface
-sudo modprobe vcan
-sudo ip link add dev vcan0 type vcan
-sudo ip link set up vcan0
+# install the python CAN library
+pip3 install python-can
 
-# Run the python script that reads data from the NMEA 2000 network
-python3 nmea2000_read.py
+# install the socketCAN utilities
+sudo apt-get install -y can-utils
