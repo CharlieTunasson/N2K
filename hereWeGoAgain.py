@@ -1,23 +1,11 @@
-# import socketcan
-# import can
-# import PyNMEA2
-
-# can_interface = 'can0'
-# bus = can.interface.Bus(can_interface, bustype='socketcan_native')
-
-# for msg in bus:
-#     if msg.arbitration_id == PyNMEA2.PRIVATE_ISOTP_ID:
-#         try:
-#             sentence = PyNMEA2.parse(msg.data)
-#             print(sentence)
-#         except PyNMEA2.ParseError as error:
-#             print("Parse error:", error)
-
-
 import can
 
-bus = can.interface.Bus(channel='can0', bustype='socketcan_ctypes')
+# Initialize the CAN bus using the "socketcan" interface
+bus = can.interface.Bus(channel='can0', bustype='socketcan_native')
 
+# Continuously listen for incoming messages on the CAN bus
 while True:
-    msg = bus.recv()
-    print(f"ID: {msg.arbitration_id:x}, Data: {msg.data}")
+    message = bus.recv()
+    if message is not None:
+        # Print the message data
+        print("ID: 0x{:03X} Data: {}".format(message.arbitration_id, message.data))
