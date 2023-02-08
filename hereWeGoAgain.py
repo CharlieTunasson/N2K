@@ -1,7 +1,7 @@
 import can
 
 # Initialize the CAN bus using the "socketcan" interface
-bus = can.interface.Bus(channel='can0', bustype='socketcan_native')
+bus = can.Bus(channel='can0', bustype='socketcan')
 
 # Continuously listen for incoming messages on the CAN bus
 while True:
